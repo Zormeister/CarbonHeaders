@@ -595,14 +595,15 @@
 		  else do {} while (0)
 	#else
 	   #define __Verify_noErr_Action(errorCode, action)                          \
+               do {                                                                   \
 		  long evalOnceErrorCode = (errorCode);                                  \
 		  if ( __builtin_expect(0 != evalOnceErrorCode, 0) ) {                   \
 			  DEBUG_ASSERT_MESSAGE(                                              \
 				  DEBUG_ASSERT_COMPONENT_NAME_STRING,                            \
-				  #errorCode " == 0 ", 0, 0, __FILE__, __LINE__, 0 );            \
+				  #errorCode " == 0 ", 0, 0, __FILE__, __LINE__, evalOnceErrorCode );            \
 			  action;                                                            \
 		  }                                                                      \
-		  else do {} while (0)
+	       } while (0)
 	#endif
 #endif
 

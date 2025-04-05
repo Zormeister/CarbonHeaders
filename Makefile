@@ -12,8 +12,7 @@ SYMROOT ?= $(SRCROOT)/sym
 DSTROOT ?= $(SRCROOT)/dst
 
 # These files in SRCROOT will get copied into /usr/include/
-FILES=Availability.h AvailabilityInternal.h AvailabilityMacros.h \
-		TargetConditionals.h AssertMacros.h
+FILES=TargetConditionals.h AssertMacros.h
 
 # These files in SRCROOT get copied into /usr/include/ only for the phone builds
 CCFILES=ConditionalMacros.h Endian.h MacErrors.h MacTypes.h 
@@ -40,13 +39,13 @@ install_carbon_core_headers:
 	done
 
 install_kernel_symlinks:
-	rm -i -f -r  $(DSTROOT)/$(INSTALL_PREFIX)/System/Library/Frameworks/Kernel.framework/Versions/A/Headers
 	mkdir -p $(DSTROOT)/$(INSTALL_PREFIX)/System/Library/Frameworks/Kernel.framework/Versions/A/Headers
 	cd $(DSTROOT)/$(INSTALL_PREFIX)/System/Library/Frameworks/Kernel.framework/Versions/A/Headers && \
-	ln -s ../../../../../../../usr/include/Availability.h && \
-	ln -s ../../../../../../../usr/include/AvailabilityInternal.h &&  \
-	ln -s ../../../../../../../usr/include/AvailabilityMacros.h && \
 	ln -s ../../../../../../../usr/include/AssertMacros.h && \
+	ln -s ../../../../../../../usr/include/ConditionalMacros.h && \
+	ln -s ../../../../../../../usr/include/Endian.h && \
+	ln -s ../../../../../../../usr/include/MacErrors.h && \
+	ln -s ../../../../../../../usr/include/MacTypes.h &&  \
 	ln -s ../../../../../../../usr/include/TargetConditionals.h 
 	
 
