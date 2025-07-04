@@ -314,9 +314,15 @@
                     #endif
 
                     /* Account for the 'deprecated' macros */
-                    #define TARGET_IPHONE_SIMULATOR             TARGET_OS_SIMULATOR
-                    #define TARGET_OS_NANO                      TARGET_OS_WATCH
-                    #define TARGET_OS_EMBEDDED                  TARGET_OS_IPHONE
+                    #ifndef TARGET_IPHONE_SIMULATOR
+                        #define TARGET_IPHONE_SIMULATOR         TARGET_OS_SIMULATOR
+                    #endif
+                    #ifndef TARGET_OS_NANO
+                        #define TARGET_OS_NANO                  TARGET_OS_WATCH
+                    #endif
+                    #ifndef TARGET_OS_EMBEDDED
+                        #define TARGET_OS_EMBEDDED              TARGET_OS_IPHONE
+                    #endif
                 #endif
             #endif
         #endif
